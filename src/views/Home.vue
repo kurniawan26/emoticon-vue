@@ -28,7 +28,8 @@ export default {
 
 .<style>
 .container{
-  display: flex;
+  margin-top: 20%;
+  display: inline-block;
   height: 100vh;
   align-items: center;
   flex-wrap: wrap;
@@ -36,6 +37,11 @@ export default {
 
 .emoticons{
   display: flex;
+  margin: 20px;
+}
+
+.finish{
+  margin-top: 10%;
 }
 section{
   width: 100%;
