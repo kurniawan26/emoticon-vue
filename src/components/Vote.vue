@@ -7,6 +7,7 @@
       :value="emoticon"
       class="btn-emoticon"
       @click="vote"
+      :disabled="isDisable"
     ></button>
   </div>
 </template>
@@ -16,15 +17,17 @@
 import moment from "moment";
 
 export default {
-  name: "Home",
+  name: "Vote",
   components: {},
   data: function () {
     return {
       emoticons: ["very-bad", "bad", "ok", "good", "very-good"],
+      isDisable: false
     }
   },
   methods:{
     vote(e){
+      this.isDisable = true;
       var voted = e.target.value;
 
       var keyStorage = moment().format('YYYYMMDDhhmmss');
