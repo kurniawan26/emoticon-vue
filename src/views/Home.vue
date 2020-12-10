@@ -35,16 +35,24 @@ export default {
   flex-wrap: wrap;
 }
 
+.give-your-vote{
+  font-size: 21px;
+}
+
+.section{
+  width: 100%;
+}
+
 .emoticons{
   display: flex;
-  margin: 20px;
+  justify-content: center;
 }
 
 .finish{
-  margin-top: 10%;
+  position: absolute;
+  bottom: 20px;
+  left: 35%;
 }
-section{
-  width: 100%;
-}
+
 </style>
 
