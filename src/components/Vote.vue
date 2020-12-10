@@ -27,9 +27,19 @@ export default {
     vote(e){
       var voted = e.target.value;
 
-      var waktu = moment().format('MMMM Do YYYY, h:mm:ss a');
+      var keyStorage = moment().format('YYYYMMDDhhmmss');
+      var create_at = moment().format('MMMM Do YYYY, h:mm:ss a');
 
-      localStorage.setItem('vote', voted)
+      var data = {
+        vote: voted,
+        create_at: create_at
+      }
+
+
+      var jsonToString = JSON.stringify(data)
+
+
+      localStorage.setItem(keyStorage, jsonToString)
     }
   }
 };
