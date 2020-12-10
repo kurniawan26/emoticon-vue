@@ -5,7 +5,7 @@
         Silahkan Berikan Penilaian Anda Terhadap Layanan Kami
       </h3>
       <div class="emoticons">
-        ini akan menjadi komponen vote
+        <vote/>
       </div>
     </section>
     <section class="finish">
@@ -16,10 +16,12 @@
 
 <script>
 // @ is an alias to /src
+import Vote from '../components/Vote.vue';
 
 export default {
   name: 'Home',
   components: {
+    Vote
   }
 };
 </script>
@@ -30,6 +32,10 @@ export default {
   height: 100vh;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.emoticons{
+  display: flex;
 }
 section{
   width: 100%;
