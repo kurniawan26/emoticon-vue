@@ -7,7 +7,7 @@
       :value="emoticon"
       class="btn-emoticon"
       @click="vote"
-      :class="{active: emoticon == emoticonClick}"
+      :class="{ active: emoticon == emoticonClick }"
       :disabled="isDisable"
     ></button>
   </div>
@@ -20,127 +20,131 @@ import moment from "moment";
 export default {
   name: "Vote",
   props: {
-    voteProp : {
-      type: Function
-    }
+    voteProp: {
+      type: Function,
+    },
   },
   data: function () {
     return {
       emoticons: ["very-bad", "bad", "ok", "good", "very-good"],
-      emoticonClick :''
-    }
+      emoticonClick: "",
+    };
   },
-  methods:{
-    vote(e){
+  methods: {
+    vote(e) {
       var voted = e.target.value;
 
+      /* untuk menentukan button class active & disable semua button */
       this.emoticonClick = voted;
 
-      var keyStorage = moment().format('YYYYMMDDhhmmss');
-      var create_at = moment().format('MMMM Do YYYY, h:mm:ss a');
+      // untuk menaruh data pada localhost
+      this.store(voted);
+
+      // memberikan indikator pada emoticon button
+      this.voteProp();
+    },
+    store(voted) {
+      var keyStorage = moment().format("YYYYMMDDhhmmss");
+      var create_at = moment().format("MMMM Do YYYY, h:mm:ss a");
 
       var data = {
         vote: voted,
-        create_at: create_at
-      }
+        create_at: create_at,
+      };
 
-
-      var jsonToString = JSON.stringify(data)
-
+      var jsonToString = JSON.stringify(data);
 
       localStorage.setItem(keyStorage, jsonToString);
-
-      this.voteProp()
-    }
+    },
   },
-  computed:{
-    isDisable : function(){
-      return this.emoticonClick.length === 0 ? false : true
-    }
+  computed: {
+    isDisable: function () {
+      return this.emoticonClick.length === 0 ? false : true;
+    },
   },
-  mounted(){
-    this.$root.$on('emitProcessDone', () => {
-      this.emoticonClick = '';
+  mounted() {
+    this.$root.$on("emitProcessDone", () => {
+      this.emoticonClick = "";
     });
-  }
+  },
 };
 </script>
 
 .<style>
-.buttons{
+.buttons {
   display: flex;
 }
 
-.btn-emoticon{
-  background: url('../assets/emoticon.png');
+.btn-emoticon {
+  background: url("../assets/emoticon.png");
   width: 101px;
   height: 100px;
   border: none;
   margin: 0px 10px;
 }
 
-#very-bad{
+#very-bad {
   background-position: 0px 0px;
 }
 
-#very-bad:hover{
+#very-bad:hover {
   background-position: 0px -100px;
 }
 
 #very-bad.active,
-#very-bad:active{
+#very-bad:active {
   background-position: 0px -200px;
 }
 
-#bad{
+#bad {
   background-position: -101px 0px;
 }
 
-#bad:hover{
+#bad:hover {
   background-position: -101px -100px;
 }
 
 #bad.active,
-#bad:active{
+#bad:active {
   background-position: -101px -200px;
 }
 
-#ok{
+#ok {
   background-position: -202px 0px;
 }
 
-#ok:hover{
+#ok:hover {
   background-position: -202px -100px;
 }
 
 #ok.active,
-#ok:active{
+#ok:active {
   background-position: -202px -200px;
 }
 
-#good{
+#good {
   background-position: -303px 0px;
 }
 
-#good:hover{
+#good:hover {
   background-position: -303px -100px;
 }
 
 #good.active,
-#good:active{
+#good:active {
   background-position: -303px -200px;
 }
 
-#very-good{
+#very-good {
   background-position: -404px 0px;
 }
 
-#very-good:hover{
+#very-good:hover {
   background-position: -404px -100px;
 }
 
 #very-good.active,
-#very-good:active{
+#very-good:active {
   background-position: -404px -200px;
 }
 </style>
